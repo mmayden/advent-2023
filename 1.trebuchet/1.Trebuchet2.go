@@ -20,7 +20,6 @@ func skim_substrings(a string) string {
 			for n := range numbers {
 				if a[i:l] == n {
 					integers_found += strconv.Itoa(numbers[a[i:l]])
-					//fmt.Println("adding in skim")
 				}
 			}
 		}
@@ -28,8 +27,6 @@ func skim_substrings(a string) string {
 	if integers_found == "" {
 		return "nothin"
 	}else {
-		//fmt.Println("skimming found some stuff")
-		//fmt.Println(integers_found)
 		return integers_found
 	}
 }
@@ -70,27 +67,18 @@ func main() {
 			}else {
 				//If its not an int, add it to a new string new_line2
 				new_line2 += r
-				fmt.Println("Added another letter, not an int.")
-				fmt.Println(new_line2)
 				//if any substring of new_line2 spells a string integer 1-9, add to new_line
 				if (skim_substrings(new_line2) != "nothin") {
-					fmt.Println("integer found")
-					fmt.Println("new line 1:  " + new_line + "\nnew_line2  " + new_line2)
 					new_line += skim_substrings(new_line2)
-					fmt.Println(new_line)
-					fmt.Println("Is the above 0?")
 					new_line2 = ""
 				}
 			}
 		}
-		fmt.Println("Whats coming")
 		current_line = strings.Split(new_line, "")
 		if len(new_line) > 2 {
 			current_line = append(current_line[:1], current_line[len(current_line)-1:]...)
-			fmt.Println(current_line)
 			s, err:= strconv.Atoi((strings.Join(current_line, "")))
 			if err != nil {}
-			fmt.Println(s)
 			solution = solution + s
 		}else if len(new_line) == 1 {
 			s, err:= strconv.Atoi((strings.Join(current_line, "")))
